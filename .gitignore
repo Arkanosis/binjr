@@ -1,7 +1,0 @@
-.idea
-*.iml
-
-/binjr/target/
-/binjr/target/binjr.jar
-/binjr/dependency-reduced-pom.xml
-/log4j2.xml
