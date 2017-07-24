@@ -6,6 +6,8 @@
         <server>
             <id>github</id>
             <privateKey>${env.GITHUB_TOKEN}</privateKey>
+            <username>${SCM_USERNAME}</username>
+            <password>${SCM_PWD}</password>
         </server>
     </servers>
     <profiles>
