@@ -17,5 +17,11 @@
                 <github.deploy.prerelease>false</github.deploy.prerelease>
             </properties>
         </profile>
+        <profile>
+            <id>binjr-snapshot</id>
+            <properties>
+                <github.deploy.prerelease>true</github.deploy.prerelease>
+            </properties>
+        </profile>
     </profiles>
 </settings>
