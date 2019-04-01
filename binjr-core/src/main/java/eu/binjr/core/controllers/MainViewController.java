@@ -985,17 +985,11 @@ public class MainViewController implements Initializable {
 
     private boolean editWorksheet(Worksheet worksheet) {
         TabPane targetTabPane = worksheetTabPane.getSelectedTabPane();
-//        Button closeButton = getTabCloseButton();
-//        EditableTab newTab = new EditableTab("", closeButton);
-//        closeButton.setOnAction(event -> closeWorksheetTab(newTab));
-//        loadWorksheet(worksheet, newTab, true);
-
         var newTab = loadWorksheetInTab(worksheet, true);
         targetTabPane.getTabs().add(newTab);
         targetTabPane.getSelectionModel().select(newTab);
         return true;
     }
-
 
     private Optional<TreeView<TimeSeriesBinding>> buildTreeViewForTarget(DataAdapter dp) {
         Objects.requireNonNull(dp, "DataAdapter instance provided to buildTreeViewForTarget cannot be null.");
@@ -1005,17 +999,20 @@ public class MainViewController implements Initializable {
             final TreeCell<TimeSeriesBinding> cell = new TreeCell<>();
             cell.itemProperty().addListener((observable, oldValue, newValue) -> cell.setText(newValue == null ? null : newValue.toString()));
             cell.setOnDragDetected(event -> {
-                if (cell.getItem() != null) {
-                    expandBranch(cell.getTreeItem());
-                    Dragboard db = cell.startDragAndDrop(TransferMode.COPY_OR_MOVE);
-                    db.setDragView(cell.snapshot(null, null));
-                    ClipboardContent content = new ClipboardContent();
-                    content.put(TIME_SERIES_BINDING_FORMAT, cell.getItem().getTreeHierarchy());
-                    db.setContent(content);
-                } else {
-                    logger.debug("No TreeItem selected: canceling drag and drop");
+                try {
+                    if (cell.getItem() != null) {
+                        expandBranch(cell.getTreeItem());
+                        Dragboard db = cell.startDragAndDrop(TransferMode.COPY_OR_MOVE);
+                        db.setDragView(cell.snapshot(null, null));
+                        ClipboardContent content = new ClipboardContent();
+                        content.put(TIME_SERIES_BINDING_FORMAT, cell.getItem().getTreeHierarchy());
+                        db.setContent(content);
+                    } else {
+                        logger.debug("No TreeItem selected: canceling drag and drop");
+                    }
+                } finally {
+                    event.consume();
                 }
-                event.consume();
             });
             return cell;
         };
