@@ -19,7 +19,7 @@ jobs:
         options: '--parallel'
         gradleWrapperFile: 'gradlew'
         javaHomeOption: 'JDKVersion'
-        jdkVersionOption: '1.11'
+        jdkVersionOption: '1.12'
         jdkArchitectureOption: 'x64'
         publishJUnitResults: false
         tasks: 'packageDistribution'
