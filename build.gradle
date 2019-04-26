@@ -241,6 +241,9 @@ task copyAppLibs(type: Copy) {
     from project(":binjr-adapter-rrd4j").configurations.runtimeClasspath {
         exclude "javafx-*.jar"
     }
+    from project(":binjr-adapter-log").configurations.runtimeClasspath {
+        exclude "javafx-*.jar"
+    }
     from project(":binjr-core").jar
 }
 
@@ -249,6 +252,7 @@ task copyPluginLibs(type: Copy) {
     from project(":binjr-adapter-jrds").jar
     from project(":binjr-adapter-csv").jar
     from project(":binjr-adapter-rrd4j").jar
+    from project(":binjr-adapter-log").jar
 }
 
 task copyLauncher(type: Copy) {

@@ -25,7 +25,8 @@ public enum ChartType {
     STACKED("Stacked area chart"),
     AREA("Area chart"),
     LINE("Line chart"),
-    SCATTER("Scatter chart");
+    SCATTER("Scatter chart"),
+    TABLE("Table");
 
     private String label;
 

@@ -295,6 +295,9 @@ public class WorksheetController implements Initializable, AutoCloseable {
                 case SCATTER:
                     viewPort = new ScatterChart<>(xAxis, yAxis);
                     break;
+                case TABLE:
+                    viewPort = null; // TODO FIXME add a table here
+                    break;
                 case LINE:
                 default:
                     viewPort = new LineChart<>(xAxis, yAxis);
